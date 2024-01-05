@@ -6,7 +6,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+label{
+  display:block;
+  text-align: left;
+}
+input{
+  display: block;
+  height: 47px;
+  margin-bottom: 13px;
+  padding: 0 5px;
+  border-radius: 4px;
+  border: none;
+}
+span{
+  color: red;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
