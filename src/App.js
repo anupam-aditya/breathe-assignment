@@ -234,7 +234,7 @@ const SignUpSidebar = (props) => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
   
-      // After the user is created, get the JWT token like this:
+      // After the user is created, we get the JWT token like this:
       const token = await getIdToken(user);
   
       // Use this token as needed, e.g., storing it for session management
