@@ -1,6 +1,6 @@
 import "./App.css";
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, getIdToken, signInWithEmailAndPassword} from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, getIdToken, signInWithEmailAndPassword, signOut} from 'firebase/auth';
 import React, {useState} from 'react';
 import world from "./world.png"
 import breathe_logo from "./breathe_logo.png"
@@ -8,6 +8,7 @@ import breathe from "./breathe.png"
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { IoChevronDown } from "react-icons/io5";
 import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
+import { MdOutlineBarChart, MdPieChartOutlined, MdOutlineLogout } from "react-icons/md";
 
 
 
@@ -33,12 +34,12 @@ export default function App() {
   return (
     <div className="App">
 
-      {isLogInSuccessFul ? <><SideNav></SideNav>
+      {isLogInSuccessFul ? <><SideNav setIsloginSuccessFul={setIsloginSuccessFul}></SideNav>
       <MainTableSection></MainTableSection></>
       : <div className="login-section">
             <MainContent />
       {!login?
-      <SignUpSidebar login={login} setLogin={setLogin}/>:
+      <SignUpSidebar login={login} setLogin={setLogin} setIsloginSuccessFul={setIsloginSuccessFul}/>:
       <LoginComponent login={login} setLogin={setLogin} setIsloginSuccessFul={setIsloginSuccessFul}/>
       }
       </div>  
@@ -50,6 +51,11 @@ export default function App() {
 const SideNav = (props) => {
   const [isOpen, setIsOpen] = useState(true);
 
+  const logoutHandler = async (data)=>{
+    const logout = await signOut(auth);
+    console.log(logout);
+    props.setIsloginSuccessFul(prevState=>!prevState);
+  }
   const navToggler = () => {
     setIsOpen(!isOpen);
   };
@@ -79,15 +85,15 @@ const SideNav = (props) => {
         }
       </div>
       <div style={mainNavStyle} className="main-nav">
-        <p>Dashboard</p>
+        <p><MdOutlineBarChart/>Dashboard</p>
         <p>Entity Manager</p>
-        <p>Data Manager</p>
+        <p><MdPieChartOutlined/>Data Manager</p>
         <p>Reporting</p>
         <p>Materiality</p>
         <p>Suppliers</p>
         <p>Analytics</p>
         <p>Targets</p>
-        <p>Logout</p>
+        <p onClick={logoutHandler}><MdOutlineLogout/> Logout</p>
       </div>
     </div>
   );
@@ -116,6 +122,7 @@ const MainTableSection = (props)=>{
     </div>
     <div style={{width:"100%"}}>
     <table style={{width:"100%"}}>
+      <tbody>
     <tr className="table-row">
       <th><input type="checkbox" className="table-input"/></th>
       <th>ASSESSMENT TITLE</th>
@@ -192,6 +199,7 @@ const MainTableSection = (props)=>{
       <td>View</td>
       <td>View/Edit/Delete</td>
     </tr>
+    </tbody>
   </table>
 
     </div>
