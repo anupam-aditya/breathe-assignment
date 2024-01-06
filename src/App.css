@@ -5,15 +5,14 @@ html {
 .App {
 	font-family: sans-serif;
 	text-align: center;
-	/* margin-top: 56px; */
 	display: flex;
-	/* justify-content: center; */
 }
 .tracker-main-section {
-	width: -webkit-fill-available;
-	padding: 24px;
 	display: flex;
 	flex-direction: column;
+	padding: 24px;
+	width: -webkit-fill-available;
+	width: -moz-available;
 }
 .tracker-row {
 	display: flex;
@@ -48,8 +47,8 @@ html {
 }
 .table-row th,
 .table-row td {
-	text-align: left; /* Or 'center' as per your design */
-	padding: 8px; /* Adjust as necessary for padding */
+	text-align: left;
+	padding: 8px;
 }
 .table-actions {
 	display: flex;
@@ -59,8 +58,6 @@ html {
 	background: black;
 	border-radius: 50%;
 	border: 1px solid black;
-	/* stroke: white; */
-	/* margin-left: 177px; */
 	position: absolute;
 	z-index: 9;
 	top: 44px;
@@ -99,6 +96,7 @@ html {
 	display: flex;
 	gap: 8px;
 	align-items: center;
+	cursor: pointer;
 }
 .login-section {
 	display: flex;
@@ -136,10 +134,6 @@ html {
 	color: white;
 	cursor: pointer;
 }
-.signup-form {
-	/* Style the form */
-}
-
 .input-field {
 	margin-bottom: 20px;
 }
@@ -149,14 +143,17 @@ html {
 }
 .input-field label {
 	display: block;
-	/* Add more styling */
 }
 
 .input-field input {
 	width: 100%;
-	/* Add more styling */
 }
-
-button {
-	/* Style your button */
+.active {
+	color: #2e9844;
+}
+.data-manager-text {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 4px;
 }

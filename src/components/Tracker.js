@@ -41,25 +41,64 @@ const Tracker = () => {
 	return (
 		<div className="tracker-main-section">
 			<div className="d-flex" style={{ gap: "14px" }}>
-				<div className="d-flex" style={{ gap: "16px", alignItems: "start" }}>
-					<p className="d-flex-column" style={{ margin: "0" }}>
+				<div
+					className="d-flex"
+					style={{
+						gap: "16px",
+						alignItems: "start",
+						padding: "20px",
+						border: "1px solid #f3f3f3",
+						borderRadius: "8px",
+					}}
+				>
+					<p
+						className="d-flex-column"
+						style={{ margin: "0", alignItems: "start", gap: "4px" }}
+					>
 						<span>Pending Trackers</span>
-						<span>45/60</span>
+						<span style={{ fontSize: "28px", lineHeight: "42px" }}>45/60</span>
 					</p>
-					<img src={progress}></img>
+					<img
+						src={progress}
+						style={{
+							padding: "6px",
+							background: "#f3f3f3",
+							borderRadius: "8px",
+						}}
+					></img>
 				</div>
-				<div className="d-flex" style={{ gap: "16px", alignItems: "start" }}>
-					<p className="d-flex-column" style={{ margin: "0" }}>
+				<div
+					className="d-flex"
+					style={{
+						gap: "16px",
+						alignItems: "start",
+						padding: "20px",
+						border: "1px solid #f3f3f3",
+						borderRadius: "8px",
+					}}
+				>
+					<p
+						className="d-flex-column"
+						style={{ margin: "0", alignItems: "start", gap: "4px" }}
+					>
 						<span>Pending Reviews</span>
-						<span>3</span>
+						<span style={{ fontSize: "28px", lineHeight: "42px" }}>3</span>
 					</p>
-					<img src={plus}></img>
+					<img
+						src={plus}
+						style={{
+							padding: "6px",
+							background: "#f3f3f3",
+							borderRadius: "8px",
+						}}
+					></img>
 				</div>
 			</div>
 			<input
 				type="search"
 				placeholder="Search for a business unit"
 				onChange={handleSearch}
+				style={{ marginTop: "31px" }}
 			/>
 			<div
 				style={{
@@ -80,17 +119,17 @@ const Tracker = () => {
 					<div>
 						Status <FaLongArrowAltDown />
 					</div>
-					<div>Jan 2023</div>
-					<div>Feb 2023</div>
-					<div>Mar 2023</div>
+					<div style={{ fontSize: "10px" }}>PENDING APPROVAL (1/12)</div>
+					<div style={{ fontSize: "10px" }}>APPROVED (2/12)</div>
+					<div style={{ fontSize: "10px" }}>PENDING (4/12)</div>
 				</div>
 				<div className="tracker-row">
 					<div>
 						Completion% <FaLongArrowAltDown />
 					</div>
-					<div>Jan 2023</div>
-					<div>Feb 2023</div>
-					<div>Mar 2023</div>
+					<div>20%</div>
+					<div>30%</div>
+					<div>50%</div>
 				</div>
 				<div className="tracker-row">
 					<div>
