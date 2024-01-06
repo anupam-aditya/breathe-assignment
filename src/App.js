@@ -1,18 +1,13 @@
 import "./App.css";
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, getIdToken, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, getIdToken, signInWithEmailAndPassword} from 'firebase/auth';
 import React, {useState} from 'react';
 import world from "./world.png"
-import breathe_logo from "./breathe_logo.png"
-import breathe from "./breathe.png"
-import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { IoChevronDown } from "react-icons/io5";
-import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
-import { MdOutlineBarChart, MdPieChartOutlined, MdOutlineLogout } from "react-icons/md";
+import SideNav from "./components/Sidenav";
+import MainTableSection from "./components/MainTableSection";
 
 
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA3sbP2MmykBfwlW2xKr4M4E323MWpFGBA",
   authDomain: "message-3afac.firebaseapp.com",
@@ -34,7 +29,7 @@ export default function App() {
   return (
     <div className="App">
 
-      {isLogInSuccessFul ? <><SideNav setIsloginSuccessFul={setIsloginSuccessFul}></SideNav>
+      {isLogInSuccessFul ? <><SideNav setIsloginSuccessFul={setIsloginSuccessFul} auth={auth}></SideNav>
       <MainTableSection></MainTableSection></>
       : <div className="login-section">
             <MainContent />
@@ -46,164 +41,6 @@ export default function App() {
     }
     </div>
   );
-}
-
-const SideNav = (props) => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const logoutHandler = async (data)=>{
-    const logout = await signOut(auth);
-    console.log(logout);
-    props.setIsloginSuccessFul(prevState=>!prevState);
-  }
-  const navToggler = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const sidebarStyle = {
-    width: isOpen ? '250px' : '0',
-    overflow: 'hidden',
-    transition: 'width 0.5s ease',
-    padding:0
-  };
-
-  const logoSectionStyle = {
-    display: 'flex',
-    alignItems: 'center',
-  };
-
-  const mainNavStyle = {
-  };
-
-  return (
-    <div style={sidebarStyle} className="sidenav">
-      <div style={logoSectionStyle} className="logo-section">
-        <img className="sidenav-logo" src={breathe_logo} alt="Logo" />
-        {isOpen
-          ? <FaCircleChevronLeft className="sidenav-toggler" onClick={navToggler} />
-          : <FaCircleChevronRight className="sidenav-toggler close-toggler" onClick={navToggler} />
-        }
-      </div>
-      <div style={mainNavStyle} className="main-nav">
-        <p><MdOutlineBarChart/>Dashboard</p>
-        <p>Entity Manager</p>
-        <p><MdPieChartOutlined/>Data Manager</p>
-        <p>Reporting</p>
-        <p>Materiality</p>
-        <p>Suppliers</p>
-        <p>Analytics</p>
-        <p>Targets</p>
-        <p onClick={logoutHandler}><MdOutlineLogout/> Logout</p>
-      </div>
-    </div>
-  );
-};
-
-const MainTableSection = (props)=>{
-  return (
-  <div style={{background:"white", color:"#000", display:"flex", flexDirection:"column", flex:"1", alignItems:"start"}}>
-    <div style={{display:"flex", flexDirection:"column", gap:"20px", padding:"24px", width:"96.8%"}}>
-      <div style={{display:"flex", alignItems:"center", gap:"40px"}}>
-        <div style={{alignItems:"center", display:"flex", gap:"20px"}}><img src={breathe} style={{height:"28px", padding:"7px 0"}}></img>
-        <p>View Name</p></div>
-        
-        <p style={{border:"1px solid #C9C9C9", borderRadius:"4px", display:"flex", gap:"10px" , padding:"8px 16px"}}><HiOutlineBuildingOffice2/>North India Region <IoChevronDown/></p>
-      </div>
-      <div style={{display:"flex", justifyContent:"space-between"}}>
-        <div style={{display:"flex", gap:"48px"}}>
-          <p>Data Entry</p>
-          <p>Tracker</p>
-        </div>
-        <div style={{display:"flex", gap:"16px"}}>
-          <p style={{display:"flex", gap:"12px", margin:"0px", alignItems:"center"}}>For: <span style={{color:"#000", borderRadius:"4px", padding:"8px 16px", border:"1px solid #C9C9C9"}}>FY 2023-24 <IoChevronDown/></span></p>
-          <button style={{background:"#2E9844", borderRadius:"4px", padding:"8px 16px", color:"white", border:"1px solid", outline:"none", fontSize:"15px",fontWeight:"700"}}>Submit For Approval</button>
-        </div>
-      </div>
-    </div>
-    <div style={{width:"100%"}}>
-    <table style={{width:"100%"}}>
-      <tbody>
-    <tr className="table-row">
-      <th><input type="checkbox" className="table-input"/></th>
-      <th>ASSESSMENT TITLE</th>
-      <th>TYPE</th>
-      <th>NO. OF SUPPLIERS</th>
-      <th>SCORE</th>
-      <th>RISK CLASSIFICATION</th>
-      <th>STATUS</th>
-      <th>RESULT</th>
-      <th>ACTIONS</th>
-    </tr>
-    <tr className="table-row">
-      <td>
-      <input type="checkbox" className="table-input"/>
-      </td>
-      <td>Assessment 1</td>
-      <td>BRSR</td>
-      <td>20</td>
-      <td>-</td>
-      <td><span style={{color: "#f1c40f"}}>Medium</span></td>
-      <td>Pending</td>
-      <td>-</td>
-      <td>View/Edit/Delete</td>
-    </tr>
-    <tr className="table-row">
-      <td>
-      <input type="checkbox" className="table-input"/>
-      </td>
-      <td>Assessment 2</td>
-      <td>BRSR</td>
-      <td>25</td>
-      <td>98</td>
-      <td><span style={{color: "#f1c40f"}}>Low</span></td>
-      <td>Complete</td>
-      <td>View</td>
-      <td>View/Edit/Delete</td>
-    </tr>
-    <tr className="table-row">
-      <td>
-      <input type="checkbox" className="table-input"/>
-      </td>
-      <td>Assessment 3</td>
-      <td>BRSR</td>
-      <td>35</td>
-      <td>22</td>
-      <td><span style={{color: "#f1c40f"}}>High</span></td>
-      <td>Complete</td>
-      <td>View</td>
-      <td>View/Edit/Delete</td>
-    </tr>
-    <tr className="table-row">
-      <td>
-      <input type="checkbox" className="table-input"/>
-      </td>
-      <td>Assessment 3</td>
-      <td>Custom</td>
-      <td>49</td>
-      <td>23</td>
-      <td><span style={{color: "#f1c40f"}}>Medium</span></td>
-      <td>Complete</td>
-      <td>View</td>
-      <td>View/Edit/Delete</td>
-    </tr>
-    <tr className="table-row">
-      <td>
-      <input type="checkbox" className="table-input"/>
-      </td>
-      <td>Assessment 3</td>
-      <td>Custom</td>
-      <td>100</td>
-      <td>42</td>
-      <td><span style={{color: "#f1c40f"}}>Medium</span></td>
-      <td>Complete</td>
-      <td>View</td>
-      <td>View/Edit/Delete</td>
-    </tr>
-    </tbody>
-  </table>
-
-    </div>
-  </div>)
 }
 
 const MainContent = () => {
@@ -259,7 +96,7 @@ const SignUpSidebar = (props) => {
   return (
     <div className="signup-sidebar">
       <img className="world-image" src={world}></img>
-      <div className="signup-form user-form">
+      <form className="signup-form user-form">
         <h3>Sign Up</h3>
         <div className="row-style">
           <label>Email<span>*</span></label>
@@ -295,7 +132,7 @@ const SignUpSidebar = (props) => {
         <button className="button-style" type="submit" onClick={handleSignUp}>Continue</button>
         {signUpMessage && <p>{signUpMessage}</p>}
         <p>Already have an account?<button className="login-toggle" onClick={loginHandler}>Login</button></p>    
-      </div>
+      </form>
     </div>
   );
 };
@@ -339,6 +176,7 @@ const LoginComponent = (props) => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Your Email Id"
             required
           />
         </div>
@@ -349,6 +187,7 @@ const LoginComponent = (props) => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Your Password"
             required
           />
         </div>
