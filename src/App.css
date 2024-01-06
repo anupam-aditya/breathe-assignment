@@ -43,8 +43,8 @@ html {
 	flex-direction: column;
 	gap: 20px;
 	padding: 24px;
-	width: -moz-available;
-	width: -webkit-fill-available;
+	width: 100%;
+	box-sizing: border-box;
 }
 .main-content {
 	padding: 20px;
