@@ -38,7 +38,14 @@ html {
 .sidenav-logo {
 	width: 141px;
 }
-
+.main-table-section {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 24px;
+	width: -moz-available;
+	width: -webkit-fill-available;
+}
 .main-content {
 	padding: 20px;
 	display: flex;

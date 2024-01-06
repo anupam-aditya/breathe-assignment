@@ -30,16 +30,7 @@ const MainTableSection = (props) => {
 				alignItems: "start",
 			}}
 		>
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					gap: "20px",
-					padding: "24px",
-					width: "-webkit-fill-available",
-					width: "-moz-available",
-				}}
-			>
+			<div className="main-table-section">
 				<Profile />
 				<div style={{ display: "flex", justifyContent: "space-between" }}>
 					<div style={{ display: "flex", gap: "48px" }}>
